@@ -35,3 +35,18 @@ pub fn test_model(correct: Vec<f64>, guessed: Vec<f64>) -> i32 {
 
     score
 }
+
+pub fn MSE(correct: Vec<f64>, guessed: Vec<f64>) -> f64 {
+    let lenght = correct.len();
+    if lenght == 0 {
+        return 0.0;
+    }
+
+    let mut sum_error = 0.0;
+    for (y_true, y_pred) in correct.iter().zip(guessed.iter()) {
+        let error = y_true - y_pred;
+        sum_error += error * error;
+    }
+
+    sum_error / (lenght as f64)
+}

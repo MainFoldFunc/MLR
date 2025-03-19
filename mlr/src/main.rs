@@ -10,12 +10,12 @@ fn main() {
     let data: Vec<f64> = datagen::generate_100_samples();
     let data_y: Vec<f64> = datagen::gen_y(data.clone());
 
-    println!("{:?}\n{:?}", data, data_y);
-
     let model = simple_li_reg_model::LinRegModel::new(); // Corrected module call
     let predict_y: Vec<f64> = model.predict(data.clone());
 
     let how_much_good = simple_li_reg_model::test_model(data_y.clone(), predict_y.clone());
-
     println!("Numbers of guessed: {}", how_much_good);
+
+    let mse = simple_li_reg_model::MSE(data_y, predict_y);
+    println!("Loss = {}", mse);
 }
